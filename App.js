@@ -18,7 +18,7 @@ export default class App extends Component {
     this.state = {
       input: '',
       search: false,
-      tasks: [{_id: '121', description: 'Hello', createdAt: new Date(), color: Utils.colors.red, done: true}]
+      tasks: []
     }
   }
 
