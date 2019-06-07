@@ -18,7 +18,7 @@ export default class App extends Component {
     this.state = {
       input: '',
       search: false,
-      tasks: [0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
+      tasks: []
     }
   }
 
@@ -30,7 +30,13 @@ export default class App extends Component {
         <FlatList
           data={tasks}
           style={styles.tasks}
-          renderItem={({ item }, i) => <Task key={i} />}
+          renderItem={({ item }) => <Task
+            key={item._id}
+            description={item.description}
+            color={item.color}
+            createdAt={item.createdAt}
+            onPress={() => this.taskPressed(item._id)}
+          />}
         />
         <View style={styles.footer}>
           <View style={{marginVertical: 8, marginHorizontal: 16, flexDirection: 'row'}}>
@@ -83,6 +89,10 @@ export default class App extends Component {
 
   new() {
     const { input } = this.state;
+  }
+
+  taskPressed(_id) {
+
   }
 }
 

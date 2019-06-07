@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import moment from 'moment';
 
 export default class Task extends Component {
 	constructor(props) {
@@ -7,11 +8,15 @@ export default class Task extends Component {
 	}
 
 	render() {
+		const { color, description, createdAt, onPress } = this.props;
+
 		return (
-			<View style={styles.container}>
-				<View style={styles.color} />
-				<Text style={styles.description}>Hello!</Text>
-			</View>
+			<TouchableOpacity style={styles.container}
+				onPress={() => onPress()}>
+				<View style={[styles.color, {backgroundColor: color}]} />
+				<Text style={styles.description}>{description}</Text>
+				<Text style={styles.createdAt}>{moment(createdAt).from()}</Text>
+			</TouchableOpacity>
 		);
 	}
 }
@@ -45,8 +50,15 @@ const styles = StyleSheet.create({
 		height: '100%',
 		position: 'absolute',
 		left: 0,
-		backgroundColor: '#256',
 		borderTopLeftRadius: 5,
 		borderBottomLeftRadius: 5
+	},
+
+	createdAt: {
+		position: 'absolute',
+		bottom: 4,
+		right: 8,
+		fontSize: 12,
+		color: '#CDCDCD'
 	}
 });
