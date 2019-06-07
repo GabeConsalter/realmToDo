@@ -8,14 +8,15 @@ export default class Task extends Component {
 	}
 
 	render() {
-		const { color, description, createdAt, onPress } = this.props;
+		const { color, description, createdAt, onPress, done } = this.props;
 
 		return (
-			<TouchableOpacity style={styles.container}
+			<TouchableOpacity style={[styles.container, {opacity: done ? .3 : 1}]}
 				onPress={() => onPress()}>
 				<View style={[styles.color, {backgroundColor: color}]} />
 				<Text style={styles.description}>{description}</Text>
 				<Text style={styles.createdAt}>{moment(createdAt).from()}</Text>
+				{done ? <View style={styles.done} /> : null}
 			</TouchableOpacity>
 		);
 	}
@@ -60,5 +61,16 @@ const styles = StyleSheet.create({
 		right: 8,
 		fontSize: 12,
 		color: '#CDCDCD'
+	},
+
+	done: {
+		width: 12,
+		height: 12,
+		borderRadius: 6,
+		backgroundColor: '#05E177',
+		position: 'absolute',
+		right: 4,
+		top: 4,
+		zIndex: 8
 	}
 });

@@ -18,7 +18,7 @@ export default class App extends Component {
     this.state = {
       input: '',
       search: false,
-      tasks: []
+      tasks: [{_id: '121', description: 'Hello', createdAt: new Date(), color: Utils.colors.red, done: true}]
     }
   }
 
@@ -35,6 +35,7 @@ export default class App extends Component {
             description={item.description}
             color={item.color}
             createdAt={item.createdAt}
+            done={item.done}
             onPress={() => this.taskPressed(item._id)}
           />}
         />
